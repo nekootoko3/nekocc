@@ -1,6 +1,11 @@
 CFLAGS=-std=c11 -g -static
+SRCS=$(wildcard *.c)
+OBJS=$(SRCS:.c=.o)
 
-nekocc: nekocc.c
+nekocc: $(OBJS)
+					$(CC) -o $@ $(OBJS) $(LDFLAGS)
+
+$(OBJS): nekocc.h
 
 test: nekocc
 				./test.sh
